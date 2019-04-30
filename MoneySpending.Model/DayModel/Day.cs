@@ -27,7 +27,7 @@ namespace MoneySpending.Model.DayModel
 
 		public Day() { }
 
-		public Day(DateTime day, byte numberOfExpenses)
+		public Day(DateTime day, int numberOfExpenses)
 		{
 			Today = day;
 			_expences = new Expense[numberOfExpenses];

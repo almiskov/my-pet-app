@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using MoneySpending.Model.DayModel;
 
 namespace MoneySpending.Model.MonthModel
 {
-	public class Week : INotifyPropertyChanged
+	public class Week : INotifyPropertyChanged, IEnumerable<Day>
 	{
 		private Day[] _days;
 
@@ -47,7 +49,7 @@ namespace MoneySpending.Model.MonthModel
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public Week(DateTime firstDay, byte numberOfExpenses)
+		public Week(DateTime firstDay, int numberOfExpenses)
 		{
 			_expenses = new double[numberOfExpenses];
 
@@ -67,6 +69,16 @@ namespace MoneySpending.Model.MonthModel
 		private void OnPropertyChanged(string property)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+		}
+
+		public IEnumerator<Day> GetEnumerator()
+		{
+			return ((IEnumerable<Day>)_days).GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return ((IEnumerable<Day>)_days).GetEnumerator();
 		}
 	}
 }

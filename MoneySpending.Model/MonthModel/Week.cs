@@ -22,20 +22,22 @@ namespace MoneySpending.Model.MonthModel
 			}
 		}
 
+		// расходы по каждой статье за неделю 
 		private double[] _expenses;
 		public double[] Expenses
 		{
 			get
 			{
-				int i;
-
-				foreach(Day day in _days)
+				for (int i = 0; i < _expenses.Length; i++)
 				{
-					i = 0;
+					_expenses[i] = 0;
+				}
 
-					foreach(Expense dayExpense in day)
+				for (int i = 0; i < _days.Length; i++)
+				{
+					for (int j = 0; j < _expenses.Length; j++)
 					{
-						_expenses[i++] += dayExpense.Sum;
+						_expenses[j] += _days[i][j].Sum;
 					}
 				}
 
@@ -45,6 +47,11 @@ namespace MoneySpending.Model.MonthModel
 			{
 				_expenses = value;
 			}
+		}
+
+		public Day this [int indexer]
+		{
+			get { return _days[indexer]; }
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

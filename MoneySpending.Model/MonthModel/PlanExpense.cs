@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MoneySpending.Model.MonthModel
+﻿namespace MoneySpending.Model.MonthModel
 {
 	public class PlanExpense
 	{

@@ -11,7 +11,12 @@ namespace MoneySpending.Model.MonthModel
 
 		private PlanExpense[] _expenses;
 
-		public Plan(int numberOfExpenses, params PlanExpense[] expenses)
+		public PlanExpense this [int indexer]
+		{
+			get { return _expenses[indexer]; }
+		}
+
+		public Plan(params PlanExpense[] expenses)
 		{
 			_expenses = expenses;
 

@@ -4,6 +4,9 @@ using System.ComponentModel;
 
 namespace MoneySpending.Model.DayModel
 {
+	/// <summary>
+	/// Статья расхода как сумма едиичных расходов Outgoing
+	/// </summary>
 	public class Expense : INotifyPropertyChanged, IEnumerable<Outgoing>
 	{
 		private double _sum;
@@ -23,6 +26,12 @@ namespace MoneySpending.Model.DayModel
 			}
 		}
 
+		public Outgoing this[int index]
+		{
+			get { return _items[index]; }
+			set { _items[index] = value; }
+		}
+
 		public Expense()
 		{
 			_items = new List<Outgoing>();
@@ -40,10 +49,12 @@ namespace MoneySpending.Model.DayModel
 			OnPropertyChanged("Sum");
 		}
 
-		public void Update(Outgoing outgoing, double price, string name)
+		public void Update(Outgoing outgoing, double price, string name = null)
 		{
 			outgoing.Price = price;
-			outgoing.Name = name;
+
+			if (name != null)
+				outgoing.Name = name;
 
 			OnPropertyChanged("Sum");
 		}

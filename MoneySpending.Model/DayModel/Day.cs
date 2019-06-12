@@ -8,6 +8,11 @@ namespace MoneySpending.Model.DayModel
 	public class Day : INotifyPropertyChanged, IEnumerable<Expense>
 	{
 		private Expense[] _expences;
+		
+		/// <summary>
+		/// Number of expences at this day
+		/// </summary>
+		public int Length => _expences.Length;
 
 		private double _sum;
 		public double Sum
@@ -19,6 +24,12 @@ namespace MoneySpending.Model.DayModel
 					_sum += exp.Sum;
 				return _sum;
 			}
+		}
+
+		public Expense this [int indexer]
+		{
+			get { return _expences[indexer]; }
+			set { _expences[indexer] = value; }
 		}
 
 		public DateTime Today { get; private set; }

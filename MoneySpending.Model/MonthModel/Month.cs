@@ -7,7 +7,30 @@ namespace MoneySpending.Model.MonthModel
 	{
 		public Plan Plan { get; private set; }
 
-		private Week[] _weeks;
+		internal Week[] _weeks;
+
+		#region try to handle rests
+
+		private double[] _rest0;
+		public double [] Rest0
+		{
+			get
+			{
+				_rest0 = new double[Plan.Length];
+
+				int i = 0;
+				foreach(var p in Plan)
+				{
+					_rest0[i] = p.Money - _weeks[0].Expenses[i];
+				}
+
+				return _rest0;
+			}
+		}
+
+		#endregion
+
+
 
 		private double[][] _rests;
 		public double[][] Rests
@@ -16,6 +39,8 @@ namespace MoneySpending.Model.MonthModel
 			{
 				/// TODO: implement this strange thing
 				/// it won't work like this
+
+				
 
 				int i;
 

@@ -49,9 +49,19 @@ namespace MoneySpending.Model.MonthModel
 			}
 		}
 
+		/// <summary>
+		/// Number of the day in week. Indexer must be from 0 to 6
+		/// </summary>
+		/// <param name="indexer"></param>
+		/// <returns></returns>
 		public Day this [int indexer]
 		{
-			get { return _days[indexer]; }
+			get
+			{
+				if (indexer > 6)
+					indexer = 6;
+				return _days[indexer];
+			}
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

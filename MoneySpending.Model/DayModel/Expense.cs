@@ -4,9 +4,6 @@ using System.ComponentModel;
 
 namespace MoneySpending.Model.DayModel
 {
-	/// <summary>
-	/// Статья расхода как сумма едиичных расходов Outgoing
-	/// </summary>
 	public class Expense : INotifyPropertyChanged, IEnumerable<Outgoing>
 	{
 		private double _sum;

@@ -92,7 +92,5 @@ namespace MoneySpending.Model.Tests
 			// assert
 			Assert.AreEqual(expected, actual);
 		}
-
-
 	}
 }

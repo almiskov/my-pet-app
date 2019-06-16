@@ -26,6 +26,11 @@ namespace MoneySpending.Model.DayModel
 			}
 		}
 
+		/// <summary>
+		/// Indexer must be less than count of expenses
+		/// </summary>
+		/// <param name="indexer"></param>
+		/// <returns></returns>
 		public Expense this [int indexer]
 		{
 			get { return _expences[indexer]; }

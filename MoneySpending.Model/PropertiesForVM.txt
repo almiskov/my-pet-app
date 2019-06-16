@@ -1,0 +1,16 @@
+﻿Class				Property			Description
+
+Outgoing			Price				Стоимость одной покупки
+Outgoing			Name				Описание одной покупки
+Expense				Sum					Сумма стоимостей единичных покупок
+Day					Sum					Сумма расходов за день
+Day					Length				Количество статей расходов
+Week				Sum					Общая сумма трат за день
+Week				Expenses[]			Сумма по каждому расходу за неделю
+Month				FirstDay			Дата начала месяца
+Month				Rests[4][]			Списки остатков по статьям на текущий момент
+Month				Plan				Список планов по статьям
+PlanExpense			Name				Название статьи расхода
+PlanExpense			Money				Сколько денег заложено на статью расхода
+Plan				Total				Общая сумма запланированных расходов
+Plan				Length				Количество запланированных расходов

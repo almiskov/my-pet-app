@@ -5,57 +5,44 @@ namespace MoneySpending.Model.MonthModel
 {
 	public class Month : INotifyPropertyChanged
 	{
+		public DateTime FirstDay { get; private set; }
+
 		public Plan Plan { get; private set; }
 
-		internal Week[] _weeks;
-
-		#region try to handle rests
-
-		private double[] _rest0;
-		public double [] Rest0
-		{
-			get
-			{
-				_rest0 = new double[Plan.Length];
-
-				int i = 0;
-				foreach(var p in Plan)
-				{
-					_rest0[i] = p.Money - _weeks[0].Expenses[i];
-				}
-
-				return _rest0;
-			}
-		}
-
-		#endregion
-
-
+		private Week[] _weeks;
 
 		private double[][] _rests;
 		public double[][] Rests
 		{
 			get
 			{
-				/// TODO: implement this strange thing
-				/// it won't work like this
-
-				
-
-				int i;
-
-				foreach (PlanExpense planExpense in Plan)
+				for(int i = 0; i < _weeks.Length; i++)
 				{
-					i = 0;
-
 					for(int j = 0; j < Plan.Length; j++)
 					{
-						_rests[i][j] = planExpense.Money - _weeks[i].Expenses[j];
+						if (i == 0)
+							_rests[i][j] = Plan[j].Money - _weeks[i].Expenses[j];
+						else
+							_rests[i][j] = _rests[i - 1][j] - _weeks[i].Expenses[j];
 					}
-					i++;
 				}
 
 				return _rests;
+			}
+		}
+
+		/// <summary>
+		/// Number of the week in month. Indexer must be from 0 to 3
+		/// </summary>
+		/// <param name="indexer"></param>
+		/// <returns>The week</returns>
+		public Week this [int indexer]
+		{
+			get
+			{
+				if (indexer > 3)
+					indexer = 3;
+				return _weeks[indexer];
 			}
 		}
 
@@ -63,10 +50,20 @@ namespace MoneySpending.Model.MonthModel
 
 		public Month(DateTime firstDay, Plan plan)
 		{
+			FirstDay = firstDay.Date;
 			Plan = plan;
 
 			_weeks = new Week[4];
 			_rests = new double[_weeks.Length][];
+
+			for (int i = 0; i < _rests.Length; i++)
+			{
+				for (int j = 0; j < Plan.Length; j++)
+				{
+					_rests[i] = new double[Plan.Length];
+					_rests[i][j] = Plan[j].Money;
+				}
+			}
 
 			for (int i = 0; i < _weeks.Length; i++)
 			{
@@ -75,19 +72,15 @@ namespace MoneySpending.Model.MonthModel
 				{
 					if (e.PropertyName == "Sum")
 					{
-						OnPropertyChanged("");
+						OnPropertyChanged("Rests");
 					}
 				};
 			}
-
 		}
 
 		private void OnPropertyChanged(string property)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 		}
-
-
-
 	}
 }

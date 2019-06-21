@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MoneySpending.Model.OneDay;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using MoneySpending.Model.DayModel;
 
-namespace MoneySpending.Model.MonthModel
+namespace MoneySpending.Model.OneMonth
 {
-	public class Week : INotifyPropertyChanged, IEnumerable<Day>
+	public class Week : IEnumerable<Day>
 	{
 		private Day[] _days;
 
@@ -64,28 +64,35 @@ namespace MoneySpending.Model.MonthModel
 			}
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event EventHandler SumChanged;
+		public event EventHandler ExpensesChanged;
+
+		public Week() { }
 
 		public Week(DateTime firstDay, int numberOfExpenses)
 		{
 			_expenses = new double[numberOfExpenses];
-
 			_days = new Day[7];
 
-			for(int i = 0; i < _days.Length; i++)
+			for (int i = 0; i < _days.Length; i++)
 			{
 				_days[i] = new Day(firstDay + TimeSpan.FromDays(i), numberOfExpenses);
-				_days[i].PropertyChanged += (s, e) =>
+				_days[i].SumChanged += (s, e) =>
 				{
-					OnPropertyChanged("Sum");
-					OnPropertyChanged("Expenses");
+					OnSumChanged();
+					OnExpensesChanged();
 				};
 			}
 		}
 
-		private void OnPropertyChanged(string property)
+		private void OnSumChanged()
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+			SumChanged?.Invoke(this, new EventArgs());
+		}
+
+		private void OnExpensesChanged()
+		{
+			ExpensesChanged?.Invoke(this, new EventArgs());
 		}
 
 		public IEnumerator<Day> GetEnumerator()

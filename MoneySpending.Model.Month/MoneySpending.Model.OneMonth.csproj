@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoneySpending.Model.Month\MoneySpending.Model.OneMonth.csproj" />
+    <ProjectReference Include="..\MoneySpending.Model.Day\MoneySpending.Model.OneDay.csproj" />
   </ItemGroup>
 
 </Project>

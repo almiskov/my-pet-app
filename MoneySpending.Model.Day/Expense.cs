@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 
-namespace MoneySpending.Model.DayModel
+namespace MoneySpending.Model.OneDay
 {
-	public class Expense : INotifyPropertyChanged, IEnumerable<Outgoing>
+	public class Expense : IEnumerable<Outgoing>
 	{
-		private double _sum;
 
 		private List<Outgoing> _items;
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event EventHandler SumChanged;
 
+		private double _sum;
 		public double Sum
 		{
 			get
@@ -20,6 +20,11 @@ namespace MoneySpending.Model.DayModel
 				foreach (Outgoing otg in _items)
 					_sum += otg.Price;
 				return _sum;
+			}
+			set
+			{
+				_sum = value;
+				OnSumChanged();
 			}
 		}
 
@@ -37,13 +42,13 @@ namespace MoneySpending.Model.DayModel
 		public void Add(Outgoing outgoing)
 		{
 			_items.Add(outgoing);
-			OnPropertyChanged("Sum");
+			OnSumChanged();
 		}
 
 		public void Remove(Outgoing outgoing)
 		{
 			_items.Remove(outgoing);
-			OnPropertyChanged("Sum");
+			OnSumChanged();
 		}
 
 		public void Update(Outgoing outgoing, double price, string name = null)
@@ -53,12 +58,12 @@ namespace MoneySpending.Model.DayModel
 			if (name != null)
 				outgoing.Name = name;
 
-			OnPropertyChanged("Sum");
+			OnSumChanged();
 		}
 
-		private void OnPropertyChanged(string property)
+		protected virtual void OnSumChanged()
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+			SumChanged?.Invoke(this, new EventArgs());
 		}
 
 		public IEnumerator<Outgoing> GetEnumerator()

@@ -1,4 +1,4 @@
-﻿namespace MoneySpending.Model.MonthModel
+﻿namespace MoneySpending.Model.OneMonth
 {
 	public class PlanExpense
 	{

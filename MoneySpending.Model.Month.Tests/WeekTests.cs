@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneySpending.Model.DayModel;
-using MoneySpending.Model.MonthModel;
+using MoneySpending.Model.OneDay;
+using MoneySpending.Model.OneMonth;
 using System;
 
-namespace MoneySpending.Model.Tests
+namespace MoneySpending.Model.OneMonth.Tests
 {
 	[TestClass]
-	public class WeekTest
+	public class WeekTests
 	{
 		[TestMethod]
 		public void PropertyChanged_Raises()
@@ -16,7 +16,7 @@ namespace MoneySpending.Model.Tests
 
 			bool isRaised = false;
 
-			w.PropertyChanged += (s, e) => isRaised = true;
+			w.SumChanged += (s, e) => isRaised = true;
 
 			// act
 			w[0][0].Add(new Outgoing(200));

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace MoneySpending.Model.MonthModel
+namespace MoneySpending.Model.OneMonth
 {
 	public class Plan : IEnumerable<PlanExpense>
 	{
@@ -15,6 +15,8 @@ namespace MoneySpending.Model.MonthModel
 		{
 			get { return _expenses[indexer]; }
 		}
+
+		public Plan() { }
 
 		public Plan(params PlanExpense[] expenses)
 		{

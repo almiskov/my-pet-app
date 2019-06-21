@@ -1,11 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneySpending.Model.DayModel;
 using System;
 
-namespace MoneySpending.Model.Tests
+namespace MoneySpending.Model.OneDay.Tests
 {
 	[TestClass]
-	public class DayTest
+	public class DayTests
 	{
 		[TestMethod]
 		public void Sum_Is_Correct()
@@ -33,7 +32,7 @@ namespace MoneySpending.Model.Tests
 			Day d = new Day(DateTime.Now, 3);
 
 			bool isRaised = false;
-			d.PropertyChanged += (s, e) => isRaised = true;
+			d.SumChanged += (s, e) => isRaised = true;
 
 			// act
 			d[0].Add(new Outgoing(200));

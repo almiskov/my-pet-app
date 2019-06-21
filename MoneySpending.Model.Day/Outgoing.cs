@@ -1,4 +1,4 @@
-﻿namespace MoneySpending.Model.DayModel
+﻿namespace MoneySpending.Model.OneDay
 {
 	public class Outgoing
 	{

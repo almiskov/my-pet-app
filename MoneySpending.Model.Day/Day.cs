@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 
-namespace MoneySpending.Model.DayModel
+namespace MoneySpending.Model.OneDay
 {
-	public class Day : INotifyPropertyChanged, IEnumerable<Expense>
+	public class Day : IEnumerable<Expense>
 	{
 		private Expense[] _expences;
 		
@@ -24,6 +23,7 @@ namespace MoneySpending.Model.DayModel
 					_sum += exp.Sum;
 				return _sum;
 			}
+
 		}
 
 		/// <summary>
@@ -39,7 +39,7 @@ namespace MoneySpending.Model.DayModel
 
 		public DateTime Today { get; private set; }
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event EventHandler SumChanged;
 
 		public Day() { }
 
@@ -51,13 +51,13 @@ namespace MoneySpending.Model.DayModel
 			for (int i = 0; i < numberOfExpenses; i++)
 			{
 				_expences[i] = new Expense();
-				_expences[i].PropertyChanged += (s, e) => OnPropertyChanged("Sum");
+				_expences[i].SumChanged += (s, e) => OnSumChanged();
 			}
 		}
 
-		private void OnPropertyChanged(string property)
+		private void OnSumChanged()
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+			SumChanged?.Invoke(this, new EventArgs());
 		}
 
 		public IEnumerator<Expense> GetEnumerator()

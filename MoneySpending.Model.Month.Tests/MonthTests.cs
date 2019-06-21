@@ -1,12 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneySpending.Model.DayModel;
-using MoneySpending.Model.MonthModel;
+using MoneySpending.Model.OneDay;
 using System;
 
-namespace MoneySpending.Model.Tests
+namespace MoneySpending.Model.OneMonth.Tests
 {
 	[TestClass]
-	public class MonthTest
+	public class MonthTests
 	{
 		[TestMethod]
 		public void Rests_Initializes_Correctly()
@@ -22,9 +21,9 @@ namespace MoneySpending.Model.Tests
 			// act
 
 			// assert
-			for(int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; i++)
 			{
-				for(int j = 0; j < m.Plan.Length; j++)
+				for (int j = 0; j < m.Plan.Length; j++)
 				{
 					Assert.AreEqual(plan[j].Money, m.Rests[i][j]);
 				}
@@ -128,7 +127,7 @@ namespace MoneySpending.Model.Tests
 
 			bool isRaised = false;
 
-			m.PropertyChanged += (s, e) => isRaised = true;
+			m.RestsChanged += (s, e) => isRaised = true;
 
 			// act
 			m[0][3][1].Add(new Outgoing(300));

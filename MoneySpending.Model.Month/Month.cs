@@ -1,29 +1,29 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace MoneySpending.Model.MonthModel
+namespace MoneySpending.Model.OneMonth
 {
-	public class Month : INotifyPropertyChanged
+	public class Month
 	{
 		public DateTime FirstDay { get; private set; }
 
 		public Plan Plan { get; private set; }
 
-		private Week[] _weeks;
+		public Week[] Weeks;
 
 		private double[][] _rests;
 		public double[][] Rests
 		{
 			get
 			{
-				for(int i = 0; i < _weeks.Length; i++)
+				for(int i = 0; i < Weeks.Length; i++)
 				{
 					for(int j = 0; j < Plan.Length; j++)
 					{
 						if (i == 0)
-							_rests[i][j] = Plan[j].Money - _weeks[i].Expenses[j];
+							_rests[i][j] = Plan[j].Money - Weeks[i].Expenses[j];
 						else
-							_rests[i][j] = _rests[i - 1][j] - _weeks[i].Expenses[j];
+							_rests[i][j] = _rests[i - 1][j] - Weeks[i].Expenses[j];
 					}
 				}
 
@@ -42,19 +42,19 @@ namespace MoneySpending.Model.MonthModel
 			{
 				if (indexer > 3)
 					indexer = 3;
-				return _weeks[indexer];
+				return Weeks[indexer];
 			}
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public event EventHandler RestsChanged;
 
 		public Month(DateTime firstDay, Plan plan)
 		{
 			FirstDay = firstDay.Date;
 			Plan = plan;
 
-			_weeks = new Week[4];
-			_rests = new double[_weeks.Length][];
+			Weeks = new Week[4];
+			_rests = new double[Weeks.Length][];
 
 			for (int i = 0; i < _rests.Length; i++)
 			{
@@ -65,22 +65,16 @@ namespace MoneySpending.Model.MonthModel
 				}
 			}
 
-			for (int i = 0; i < _weeks.Length; i++)
+			for (int i = 0; i < Weeks.Length; i++)
 			{
-				_weeks[i] = new Week(firstDay + TimeSpan.FromDays(i * 7), plan.Length);
-				_weeks[i].PropertyChanged += (s, e) =>
-				{
-					if (e.PropertyName == "Sum")
-					{
-						OnPropertyChanged("Rests");
-					}
-				};
+				Weeks[i] = new Week(firstDay + TimeSpan.FromDays(i * 7), plan.Length);
+				Weeks[i].SumChanged += (s, e) => OnRestsChanged();
 			}
 		}
 
-		private void OnPropertyChanged(string property)
+		private void OnRestsChanged()
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+			RestsChanged?.Invoke(this, new EventArgs());
 		}
 	}
 }

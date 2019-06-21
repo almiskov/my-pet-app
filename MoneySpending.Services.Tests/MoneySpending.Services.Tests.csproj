@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneySpending.Model.Month\MoneySpending.Model.OneMonth.csproj" />
-    <ProjectReference Include="..\MoneySpending.Model\MoneySpending.Model.csproj" />
+    <ProjectReference Include="..\MoneySpending.Services\MoneySpending.Services.csproj" />
   </ItemGroup>
 
 </Project>

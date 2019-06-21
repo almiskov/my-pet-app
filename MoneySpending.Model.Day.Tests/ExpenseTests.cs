@@ -1,10 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneySpending.Model.DayModel;
 
-namespace MoneySpending.Model.Tests
+namespace MoneySpending.Model.OneDay.Tests
 {
 	[TestClass]
-	public class ExpenseTest
+	public class ExpenseTests
 	{
 		[TestMethod]
 		public void Add_Raises_Property_Changed()
@@ -12,7 +11,7 @@ namespace MoneySpending.Model.Tests
 			// arrange
 			Expense ex = new Expense();
 			bool isRaised = false;
-			ex.PropertyChanged += (s, e) => isRaised = true;
+			ex.SumChanged += (s, e) => isRaised = true;
 
 			// act
 			ex.Add(new Outgoing(200));
@@ -29,7 +28,7 @@ namespace MoneySpending.Model.Tests
 			bool isRaised = false;
 			Outgoing og = new Outgoing(200);
 			ex.Add(og);
-			ex.PropertyChanged += (s, e) => isRaised = true;
+			ex.SumChanged += (s, e) => isRaised = true;
 
 			// act
 			ex.Remove(og);
@@ -46,7 +45,7 @@ namespace MoneySpending.Model.Tests
 			bool isRaised = false;
 			Outgoing og = new Outgoing(200);
 			ex.Add(og);
-			ex.PropertyChanged += (s, e) => isRaised = true;
+			ex.SumChanged += (s, e) => isRaised = true;
 
 			// act
 			ex.Update(og, 300);

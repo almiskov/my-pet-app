@@ -7,7 +7,7 @@ namespace MoneySpending.Services
 {
 	public class MonthManipulation
 	{
-		internal static readonly string _basePathToSave = @"data\";
+		internal static readonly string _folderPath = @"data\";
 
 		public static Month CreateNewMonth(DateTime firstDay, Plan plan)
 		{
@@ -16,8 +16,8 @@ namespace MoneySpending.Services
 
 		public static void SaveToDisk(Month month)
 		{
-			if (!Directory.Exists(_basePathToSave))
-				Directory.CreateDirectory(_basePathToSave);
+			if (!Directory.Exists(_folderPath))
+				Directory.CreateDirectory(_folderPath);
 
 			string fullPath = CreateFullJsonPathFromDateTime(month.FirstDay);
 
@@ -55,7 +55,7 @@ namespace MoneySpending.Services
 				date.Day.ToString() +
 				".json";
 
-			return _basePathToSave + fileName;
+			return _folderPath + fileName;
 		}
 	}
 }

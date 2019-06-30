@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MoneySpending.Model.OneDay
 {
-	public class Day : IEnumerable<Expense>
+	public class Day : ICollection<Expense>
 	{
 		private Expense[] _expences;
 		
@@ -39,6 +39,10 @@ namespace MoneySpending.Model.OneDay
 
 		public DateTime Today { get; private set; }
 
+		public int Count => ((ICollection<Expense>)_expences).Count;
+
+		public bool IsReadOnly => ((ICollection<Expense>)_expences).IsReadOnly;
+
 		public event EventHandler SumChanged;
 
 		public Day() { }
@@ -68,6 +72,31 @@ namespace MoneySpending.Model.OneDay
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return ((IEnumerable<Expense>)_expences).GetEnumerator();
+		}
+
+		public void Add(Expense item)
+		{
+			((ICollection<Expense>)_expences).Add(item);
+		}
+
+		public void Clear()
+		{
+			((ICollection<Expense>)_expences).Clear();
+		}
+
+		public bool Contains(Expense item)
+		{
+			return ((ICollection<Expense>)_expences).Contains(item);
+		}
+
+		public void CopyTo(Expense[] array, int arrayIndex)
+		{
+			((ICollection<Expense>)_expences).CopyTo(array, arrayIndex);
+		}
+
+		public bool Remove(Expense item)
+		{
+			return ((ICollection<Expense>)_expences).Remove(item);
 		}
 	}
 }

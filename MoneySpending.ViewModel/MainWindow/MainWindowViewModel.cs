@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using MoneySpending.Model.OneMonth;
 
-namespace MoneySpending.ViewModel
+namespace MoneySpending.ViewModel.MainWindow
 {
 	public class MainWindowViewModel : INotifyPropertyChanged
 	{

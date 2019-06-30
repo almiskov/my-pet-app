@@ -2,13 +2,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace MoneySpending.Model.OneMonth
 {
-	public class Week : IEnumerable<Day>
+	public class Week : ICollection<Day>
 	{
-		private Day[] _days;
+		private Day[] _days = new Day[7];
 
 		private double _sum;
 		public double Sum
@@ -49,6 +48,10 @@ namespace MoneySpending.Model.OneMonth
 			}
 		}
 
+		public int Count => ((ICollection<Day>)_days).Count;
+
+		public bool IsReadOnly => ((ICollection<Day>)_days).IsReadOnly;
+
 		/// <summary>
 		/// Number of the day in week. Indexer must be from 0 to 6
 		/// </summary>
@@ -72,7 +75,6 @@ namespace MoneySpending.Model.OneMonth
 		public Week(DateTime firstDay, int numberOfExpenses)
 		{
 			_expenses = new double[numberOfExpenses];
-			_days = new Day[7];
 
 			for (int i = 0; i < _days.Length; i++)
 			{
@@ -103,6 +105,31 @@ namespace MoneySpending.Model.OneMonth
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return ((IEnumerable<Day>)_days).GetEnumerator();
+		}
+
+		public void Add(Day item)
+		{
+			((ICollection<Day>)_days).Add(item);
+		}
+
+		public void Clear()
+		{
+			((ICollection<Day>)_days).Clear();
+		}
+
+		public bool Contains(Day item)
+		{
+			return ((ICollection<Day>)_days).Contains(item);
+		}
+
+		public void CopyTo(Day[] array, int arrayIndex)
+		{
+			((ICollection<Day>)_days).CopyTo(array, arrayIndex);
+		}
+
+		public bool Remove(Day item)
+		{
+			return ((ICollection<Day>)_days).Remove(item);
 		}
 	}
 }

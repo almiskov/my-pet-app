@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MoneySpending.View.Styles">
+
+    <Color x:Key="FontColor">#E6FFFF</Color>
+    <SolidColorBrush x:Key="FontBrush" Color="{StaticResource FontColor}"/>
+
+    <Color x:Key="TriggeredColor">#62D99C</Color>
+    <SolidColorBrush x:Key="TriggeredBrush" Color="{StaticResource TriggeredColor}"/>
+
+    <Color x:Key="AccentedColor">#36D986</Color>
+    <SolidColorBrush x:Key="AccentedBrush" Color="{StaticResource AccentedColor}"/>
+
+    <Color x:Key="BackgroundColor" >#007439</Color>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+
+    <Color x:Key="PaleColor">#228653</Color>
+    <SolidColorBrush x:Key="PaleBrush" Color="{StaticResource PaleColor}"/>
+
+    <Color x:Key="MainColor">#00B358</Color>
+    <SolidColorBrush x:Key="MainBrush" Color="{StaticResource MainColor}"/>
+
+</ResourceDictionary>

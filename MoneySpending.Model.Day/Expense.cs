@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 namespace MoneySpending.Model.OneDay
 {
-	public class Expense : IEnumerable<Outgoing>
+	public class Expense : ICollection<Outgoing>
 	{
-
 		private List<Outgoing> _items;
 
 		public event EventHandler SumChanged;
@@ -27,6 +26,10 @@ namespace MoneySpending.Model.OneDay
 				OnSumChanged();
 			}
 		}
+
+		public int Count => ((ICollection<Outgoing>)_items).Count;
+
+		public bool IsReadOnly => ((ICollection<Outgoing>)_items).IsReadOnly;
 
 		public Outgoing this[int index]
 		{
@@ -74,6 +77,26 @@ namespace MoneySpending.Model.OneDay
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return ((IEnumerable<Outgoing>)_items).GetEnumerator();
+		}
+
+		public void Clear()
+		{
+			((ICollection<Outgoing>)_items).Clear();
+		}
+
+		public bool Contains(Outgoing item)
+		{
+			return ((ICollection<Outgoing>)_items).Contains(item);
+		}
+
+		public void CopyTo(Outgoing[] array, int arrayIndex)
+		{
+			((ICollection<Outgoing>)_items).CopyTo(array, arrayIndex);
+		}
+
+		bool ICollection<Outgoing>.Remove(Outgoing item)
+		{
+			return ((ICollection<Outgoing>)_items).Remove(item);
 		}
 	}
 }

@@ -3,22 +3,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MoneySpending.View.Styles">
 
-    <Color x:Key="FontColor">#E6FFFF</Color>
-    <SolidColorBrush x:Key="FontBrush" Color="{StaticResource FontColor}"/>
+    <!--colors-->
+    <Color x:Key="ActiveForegroundColor">#230672</Color>
+    <Color x:Key="DisabledForegroundColor">#8A6ED7</Color>
 
-    <Color x:Key="TriggeredColor">#62D99C</Color>
-    <SolidColorBrush x:Key="TriggeredBrush" Color="{StaticResource TriggeredColor}"/>
+    <Color x:Key="StaticBackgroundColor">#FFD600</Color>
+    <Color x:Key="MouseOverBackgroundColor">#FFE873</Color>
+    <Color x:Key="StaticBorderColor">#3C13AF</Color>
+    <Color x:Key="PressedOrSelectedBackgroundColor">#FFE040</Color>
+    <Color x:Key="DisabledBackgroundColor">#BFA830</Color>
+    <Color x:Key="DisabledBorderColor">#432C83</Color>
+    
+    <!--Text Brushes-->
+    <SolidColorBrush x:Key="Text.MainColor" Color="{StaticResource ActiveForegroundColor}"/>
 
-    <Color x:Key="AccentedColor">#36D986</Color>
-    <SolidColorBrush x:Key="AccentedBrush" Color="{StaticResource AccentedColor}"/>
+    <!--Button Brushes-->
+    <SolidColorBrush x:Key="Button.Static.Background" Color="{StaticResource StaticBackgroundColor}"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="{StaticResource StaticBorderColor}"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="{StaticResource MouseOverBackgroundColor}"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="{StaticResource PressedOrSelectedBackgroundColor}"/>
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="{StaticResource DisabledBackgroundColor}"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="{StaticResource DisabledBorderColor}"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="{StaticResource DisabledForegroundColor}"/>
 
-    <Color x:Key="BackgroundColor" >#007439</Color>
-    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <!--ListBox Brushes-->
+    <SolidColorBrush x:Key="ListBox.Static.Background" Color="{StaticResource StaticBackgroundColor}"/>
+    <SolidColorBrush x:Key="ListBox.Static.Border" Color="{StaticResource StaticBorderColor}"/>
+    <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="{StaticResource DisabledBackgroundColor}"/>
+    <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="{StaticResource DisabledBorderColor}"/>
 
-    <Color x:Key="PaleColor">#228653</Color>
-    <SolidColorBrush x:Key="PaleBrush" Color="{StaticResource PaleColor}"/>
+    <!--ListBoxItems Brushes-->
+    <SolidColorBrush x:Key="Item.MouseOver.Background" Color="{StaticResource MouseOverBackgroundColor}"/>
+    <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="{StaticResource PressedOrSelectedBackgroundColor}"/>
+    <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="{StaticResource StaticBorderColor}"/>
 
-    <Color x:Key="MainColor">#00B358</Color>
-    <SolidColorBrush x:Key="MainBrush" Color="{StaticResource MainColor}"/>
 
 </ResourceDictionary>

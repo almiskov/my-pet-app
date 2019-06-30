@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MoneySpending.View.Styles">
+
+
+    <DataTemplate x:Key="DayItemTemplate">
+        <TextBlock Text="{Binding Sum}"/>
+    </DataTemplate>
+    
+    <ControlTemplate x:Key="Week">
+        <StackPanel Orientation="Horizontal">
+            <ListBox ItemsSource="{Binding [0]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <ListBox ItemsSource="{Binding [1]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <ListBox ItemsSource="{Binding [2]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <ListBox ItemsSource="{Binding [3]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <ListBox ItemsSource="{Binding [4]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <ListBox ItemsSource="{Binding [5]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <ListBox ItemsSource="{Binding [6]}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
+                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+        </StackPanel>
+    </ControlTemplate>
+    
+</ResourceDictionary>

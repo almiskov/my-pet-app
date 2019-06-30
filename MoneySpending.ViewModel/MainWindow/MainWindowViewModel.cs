@@ -8,11 +8,11 @@ namespace MoneySpending.ViewModel.MainWindow
 	{
 		public Plan Plan { get; set; }
 		public Month Month { get; set; }
-		
+
 		public MainWindowViewModel()
 		{
 			Plan = new Plan(
-				new PlanExpense(10000, "Е+Тр"),
+				new PlanExpense(30000, "Е+Тр"),
 				new PlanExpense(20000, "Ск"),
 				new PlanExpense(10000, "Мк"),
 				new PlanExpense(10000, "Пр"));
@@ -21,6 +21,9 @@ namespace MoneySpending.ViewModel.MainWindow
 
 			Month[0][0][0].Add(new Model.OneDay.Outgoing(200));
 			Month[0][0][0].Add(new Model.OneDay.Outgoing(200));
+			Month[0][1][2].Add(new Model.OneDay.Outgoing(200));
+			Month[0][1][2].Add(new Model.OneDay.Outgoing(300));
+			Month[0][4][1].Add(new Model.OneDay.Outgoing(200));
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

@@ -19,6 +19,7 @@ namespace MoneySpending.Model.OneMonth
 					_sum += day.Sum;
 				return _sum;
 			}
+			set { _sum = value; }
 		}
 
 		// расходы по каждой статье за неделю 

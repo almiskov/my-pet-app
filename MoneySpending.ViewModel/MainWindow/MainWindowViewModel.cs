@@ -20,7 +20,7 @@ namespace MoneySpending.ViewModel.MainWindow
 			Month = new Month(DateTime.Now, Plan);
 
 			Month[0][0][0].Add(new Model.OneDay.Outgoing(200));
-			Month[0][0][0].Add(new Model.OneDay.Outgoing(200));
+			Month[0][0][2].Add(new Model.OneDay.Outgoing(200));
 			Month[0][1][2].Add(new Model.OneDay.Outgoing(200));
 			Month[0][1][2].Add(new Model.OneDay.Outgoing(300));
 			Month[0][4][1].Add(new Model.OneDay.Outgoing(200));

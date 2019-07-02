@@ -2,41 +2,111 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MoneySpending.View.Styles">
 
+    <ControlTemplate x:Key="Day">
+        <StackPanel>
+            <TextBlock FontStyle="Italic"
+                       FontSize="{StaticResource Small}"
+                       Margin="20 0 20 0">
+                <Run Text="{Binding Path=Today, StringFormat=dd.MM.yyyy}"/>
+                <Run Text="г."/>
+                <TextBlock.ToolTip>
+                    <TextBlock>
+                        <Run Text="Сумма за день:" FontStyle="Italic"/>
+                        <Run Text="{Binding Sum}" FontStyle="Italic"/>
+                    </TextBlock>
+                </TextBlock.ToolTip>
+            </TextBlock>
 
-    <DataTemplate x:Key="DayItemTemplate">
-        <TextBlock Text="{Binding Sum}"/>
-    </DataTemplate>
-    
+            <ListBox ItemsSource="{Binding}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Sum}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="WeekSums">
+        <StackPanel>
+            <TextBlock FontStyle="Italic"
+                       FontSize="{StaticResource Small}"
+                       Margin="20 0 20 0">
+                <Run Text="Сумма"/>
+                <TextBlock.ToolTip>
+                    <TextBlock>
+                        <Run Text="Сумма за неделю:" FontStyle="Italic"/>
+                        <Run Text="{Binding Sum}" FontStyle="Italic"/>
+                    </TextBlock>
+                </TextBlock.ToolTip>
+            </TextBlock>
+
+            <ListBox ItemsSource="{Binding Expenses}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}">
+            </ListBox>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="WeekRests">
+        <StackPanel>
+            <TextBlock FontStyle="Italic"
+                       FontSize="{StaticResource Small}"
+                       Margin="20 0 20 0"
+                       Text="Остаток"/>
+
+            <ListBox ItemsSource="{Binding}"
+                     Style="{StaticResource ListBoxBaseStyle}"
+                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}">
+            </ListBox>
+        </StackPanel>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="Week">
         <StackPanel Orientation="Horizontal">
-            <ListBox ItemsSource="{Binding [0]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
-            <ListBox ItemsSource="{Binding [1]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
-            <ListBox ItemsSource="{Binding [2]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
-            <ListBox ItemsSource="{Binding [3]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
-            <ListBox ItemsSource="{Binding [4]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
-            <ListBox ItemsSource="{Binding [5]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
-            <ListBox ItemsSource="{Binding [6]}"
-                     Style="{StaticResource ListBoxBaseStyle}"
-                     ItemContainerStyle="{StaticResource ListBoxItemBaseStyle}"
-                     ItemTemplate="{StaticResource DayItemTemplate}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [0]}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [1]}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [2]}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [3]}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [4]}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [5]}"/>
+            <Control Template="{StaticResource Day}" DataContext="{Binding [6]}"/>
+            <Control Template="{StaticResource WeekSums}"/>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="Month">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="Days_and_week_sums">
+                <Control Template="{StaticResource Week}"
+                     DataContext="{Binding [0]}"
+                     Margin="5"/>
+                <Control Template="{StaticResource Week}"
+                     DataContext="{Binding [1]}"
+                     Margin="5"/>
+                <Control Template="{StaticResource Week}"
+                     DataContext="{Binding [2]}"
+                     Margin="5"/>
+                <Control Template="{StaticResource Week}"
+                     DataContext="{Binding [3]}"
+                     Margin="5"/>
+            </StackPanel>
+            <StackPanel x:Name="Week_rests">
+                <Control Template="{StaticResource WeekRests}"
+                         DataContext="{Binding Rests[0]}"
+                         Margin="5"/>
+                <Control Template="{StaticResource WeekRests}"
+                         DataContext="{Binding Rests[1]}"
+                         Margin="5"/>
+                <Control Template="{StaticResource WeekRests}"
+                         DataContext="{Binding Rests[2]}"
+                         Margin="5"/>
+                <Control Template="{StaticResource WeekRests}"
+                         DataContext="{Binding Rests[3]}"
+                         Margin="5"/>
+            </StackPanel>
         </StackPanel>
     </ControlTemplate>
     

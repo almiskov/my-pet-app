@@ -63,7 +63,7 @@
 
     <!--listBox base style-->
     <Style x:Key="ListBoxBaseStyle" TargetType="{x:Type ListBox}">
-        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Width" Value="Auto"/>
         <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource Text.MainColor}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>

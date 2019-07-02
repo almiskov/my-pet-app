@@ -23,7 +23,7 @@ namespace MoneySpending.Model.OneDay
 					_sum += exp.Sum;
 				return _sum;
 			}
-
+			set { _sum = value; }
 		}
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace MoneySpending.Model.OneDay
 			set { _expences[indexer] = value; }
 		}
 
-		public DateTime Today { get; private set; }
+		public DateTime Today { get; set; }
 
 		public int Count => ((ICollection<Expense>)_expences).Count;
 
